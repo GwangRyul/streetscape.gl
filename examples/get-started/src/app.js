@@ -40,14 +40,13 @@ import {XVIZ_CONFIG, APP_SETTINGS, MAPBOX_TOKEN, MAP_STYLE, XVIZ_STYLE, CAR} fro
 
 setXVIZConfig(XVIZ_CONFIG);
 
+
+
+
 const TIMEFORMAT_SCALE = getXVIZConfig().TIMESTAMP_FORMAT === 'seconds' ? 1000 : 1;
 
 // __IS_STREAMING__ and __IS_LIVE__ are defined in webpack.config.js
-const exampleLog = require(__IS_STREAMING__
-  ? './log-from-stream'
-  : __IS_LIVE__
-    ? './log-from-live'
-    : './log-from-file').default;
+const exampleLog = require('./log-from-file').default;
 
 class Example extends PureComponent {
   state = {
@@ -67,9 +66,15 @@ class Example extends PureComponent {
       settings: {...this.state.settings, ...changedSettings}
     });
   };
+  _onSettingMySetting = onChangedSettings => {
+    this.setState( {
+      settings: {...this.state.settings, ...onChangedSettings}
+    });
+  }
 
   render() {
     const {log, settings} = this.state;
+    //new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG']);
 
     return (
       <div id="container">
@@ -89,7 +94,7 @@ class Example extends PureComponent {
           <div id="map-view">
             <LogViewer
               log={log}
-              mapboxApiAccessToken={MAPBOX_TOKEN}
+              mapboxApiAccessToken= "pk.eyJ1IjoiZ3dhbmdyeXVsIiwiYSI6ImNrZmRwcnMzMjFyeDQyeXFneXE3aHBid3kifQ.urnQG35_4DuT7D5lF5sBHA"
               mapStyle={MAP_STYLE}
               car={CAR}
               xvizStyles={XVIZ_STYLE}
@@ -131,5 +136,15 @@ class Example extends PureComponent {
     );
   }
 }
+/*const corsOptions = {
+  origin: 'http://localhost:8000', // 허락하고자 하는 요청 주소
+  credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.
+};
+
+app.use(cors(corsOptions)); // config 추가
+*/
+
+
+
 
 render(<Example />, document.getElementById('app'));

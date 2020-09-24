@@ -60,6 +60,7 @@ class Example extends PureComponent {
     const log = this._log;
     const activePanel = this.state.panel;
 
+
     // Editor needs to be always rendered to maintain documenta state
     return (
       <div id="container">
@@ -71,7 +72,7 @@ class Example extends PureComponent {
           <LogViewer
             log={log}
             car={CAR}
-            mapboxApiAccessToken={MAPBOX_TOKEN}
+            mapboxApiAccessToken="pk.eyJ1IjoiZ3dhbmdyeXVsIiwiYSI6ImNrZmRwcnMzMjFyeDQyeXFneXE3aHBid3kifQ.urnQG35_4DuT7D5lF5sBHA"
             mapStyle={MAP_STYLE}
             showTooltip={true}
           />

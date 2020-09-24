@@ -25,7 +25,7 @@ export default new XVIZLiveLoader({
   bufferLength: 10,
   serverConfig: {
     defaultLogLength: 30,
-    serverUrl: 'ws://localhost:8081'
+    serverUrl: 'ws://localhost:8080'
   },
   worker: true,
   maxConcurrency: 4
